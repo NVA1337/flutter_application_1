@@ -1,21 +1,28 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/checkbox_example.dart';
+import 'package:flutter_application_1/widgets/task.dart';
 
+// ignore: must_be_immutable
 class DailyTask extends StatelessWidget{
-  const DailyTask({super.key});
+  static const List<Tasks_info> tasks=[
+    Tasks_info('Первая задача','12:10'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+  ];
+  // ignore: use_key_in_widget_constructors
+  const DailyTask();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
           children: [
             Container(
-              height: 111,
-              padding: const EdgeInsets.all(17),
-              alignment: Alignment.topRight,
+              height: 120,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              alignment: Alignment.bottomRight ,
               child: Container(
-                width: 80,
-                height: 80,
+                width: 60,
+                height: 60,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
@@ -26,7 +33,7 @@ class DailyTask extends StatelessWidget{
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +43,7 @@ class DailyTask extends StatelessWidget{
                       text: 'Today',
                       style: TextStyle(
                         fontWeight: FontWeight.w800,
-                        fontSize: 70,
+                        fontSize: 38,
                       )
                     )
                   ),
@@ -45,7 +52,7 @@ class DailyTask extends StatelessWidget{
                       text: 'Hide complicated',
                       style: TextStyle(
                         color: Colors.blueAccent,
-                        fontSize: 25,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                       )
                     )
@@ -53,49 +60,8 @@ class DailyTask extends StatelessWidget{
                 ],  
               ),
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 37, right: 20, top: 41),
-              child: Row(
-          
-                  children:[
-                    Transform.scale( 
-                      scale: 1.7,
-                      child:  CheckboxExample()
-                    ),
-                    Container(
-                      width: 300,
-                      margin: EdgeInsets.only(left: 12),
-                     child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                            Text.rich(
-                              softWrap: true,
-                              TextSpan(
-                              text: 'Почистить зубы',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 97, 97, 97),
-                                fontSize: 30,
-                                fontWeight: FontWeight.w400,
-                                )
-                              ),
-                            ),
-                            Text.rich(
-                              softWrap: true,
-                              TextSpan(
-                              text: '12:42 PM',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 97, 97, 97),
-                                fontSize: 28,
-                                fontWeight: FontWeight.w400,
-                                )
-                              ),
-                            )
-                        ],
-                      ),
-                    )
-                  ]
-                ),
-            ),
+            const Task(task_text: tasks)
+
           ]
         ),
     );
