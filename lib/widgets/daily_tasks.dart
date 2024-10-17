@@ -1,20 +1,37 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/task.dart';
+import 'package:flutter_application_1/widgets/task_creator.dart';
+import '../assets_widget/next_task.dart';
+import 'package:flutter_application_1/assets_widget/task.dart';
 
 // ignore: must_be_immutable
 class DailyTask extends StatelessWidget{
   static const List<Tasks_info> tasks=[
     Tasks_info('Первая задача','12:10'),
     Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
   ];
+
+  static const List<Tasks_info> next_tasks=[
+    Tasks_info('Первая задача','12:10'),
+  ];
+
   // ignore: use_key_in_widget_constructors
   const DailyTask();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             Container(
               height: 120,
@@ -60,11 +77,42 @@ class DailyTask extends StatelessWidget{
                 ],  
               ),
             ),
-            const Task(task_text: tasks)
-
+            const Task(task_text: tasks),
+            Container(
+              padding: const EdgeInsets.only(top: 10,left: 20),
+              child: const Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      text: 'Tomorrow',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 38,
+                      )
+                    )
+                  ),
+                ],  
+              ),
+            ),
+            const Next_Task(task_text: next_tasks),
+            FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const NewWidget2();
+                  },
+                ),
+              );
+            },
+            child: const Icon(Icons.add),
+          ),
           ]
         ),
-    );
+    )
+  );
 
   }
 }
