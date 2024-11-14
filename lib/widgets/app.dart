@@ -6,8 +6,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: DailyTask(), 
+    return MaterialApp(
+      home: DailyTask(name: '',time: TimeOfDay.now()), 
       );
   }
 

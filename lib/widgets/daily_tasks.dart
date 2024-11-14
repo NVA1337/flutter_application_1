@@ -6,35 +6,33 @@ import 'package:flutter_application_1/assets_widget/task.dart';
 
 // ignore: must_be_immutable
 class DailyTask extends StatelessWidget{
-  static const List<Tasks_info> tasks=[
-    Tasks_info('Первая задача','12:10'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
-    Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30'),
+  final String name;
+  final TimeOfDay time;
+  List<Tasks_info> tasks=[
+    const Tasks_info('Первая задача','12:10'),
+    const Tasks_info('Вторая задача, но уже подлинее в этот раз','9:30')
   ];
 
+  // ignore: constant_identifier_names
   static const List<Tasks_info> next_tasks=[
     Tasks_info('Первая задача','12:10'),
   ];
 
   // ignore: use_key_in_widget_constructors
-  const DailyTask();
+  DailyTask({required this.name, required this.time});
 
   @override
   Widget build(BuildContext context) {
+    if (name!= '') {
+      tasks.add(Tasks_info(name,"${time.hour}:${time.minute}"));
+    }
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(child: SingleChildScrollView(
         child: Column(
           children: [
+
             Container(
-              height: 120,
+              height: 80,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               alignment: Alignment.bottomRight ,
               child: Container(
@@ -77,7 +75,7 @@ class DailyTask extends StatelessWidget{
                 ],  
               ),
             ),
-            const Task(task_text: tasks),
+            Task(task_text: tasks),
             Container(
               padding: const EdgeInsets.only(top: 10,left: 20),
               child: const Row(
@@ -96,7 +94,15 @@ class DailyTask extends StatelessWidget{
               ),
             ),
             const Next_Task(task_text: next_tasks),
+            Container(
+            
+              margin: const EdgeInsets.only(right: 18, bottom: 18),
+              alignment: Alignment.centerRight ,
+              child: 
             FloatingActionButton(
+            backgroundColor: Colors.black,
+            foregroundColor: Colors.white,
+            shape: const CircleBorder(),
             onPressed: () {
               Navigator.push(
                 context,
@@ -108,10 +114,11 @@ class DailyTask extends StatelessWidget{
               );
             },
             child: const Icon(Icons.add),
+          )
           ),
           ]
         ),
-    )
+    ))
   );
 
   }

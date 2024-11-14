@@ -12,14 +12,14 @@ class _CheckboxExampleState extends State<CheckboxExample> {
 
   @override
   Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
+    Color getColor(Set<WidgetState> states) {
       return Colors.black;
     }
 
     return Checkbox(
       
       checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
+      fillColor: WidgetStateProperty.resolveWith(getColor),
       value: isChecked,
       onChanged: (bool? value) {
         setState(() {
